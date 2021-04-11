@@ -2,9 +2,9 @@
 
 ### Front
 
-- Vue 3
+- Vue
 - Vuex
 - Vuex ORM
-
+- TypeScript
 
 ### Back
