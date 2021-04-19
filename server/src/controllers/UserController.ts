@@ -4,6 +4,9 @@ export default {
 
     index: async (req: Request, res: Response) => {
         return res.json({oi:['oi']})
+    },
+    create: async (req: Request, res: Response)=>  {
+        return res.json({oi:['oi']})
     }
 
 

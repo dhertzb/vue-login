@@ -10,8 +10,8 @@ routes.get('/', (_, res) =>{
     return res.send('Hello123123r')
 })
 
+// Users
 
-routes.get('/', UserController.index)
-
+routes.post('/api/users', UserController.create)
 
 export default routes

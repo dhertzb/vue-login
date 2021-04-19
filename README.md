@@ -13,7 +13,7 @@
 
 - Express
 - PostgreSQL
-
+- Prisma
 
 ### Banco de dados
 
