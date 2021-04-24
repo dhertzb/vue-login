@@ -7,6 +7,7 @@
 - Vuex ORM
 - TypeScript
 - Axios
+- Vuetify
 
 
 ### Back
