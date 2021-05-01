@@ -1,12 +1,11 @@
 import user from "../services/user";
-import { IServices } from "../types/services";
 import Vue from "vue";
 
-const services: IServices = {
+const services = {
   user,
 };
 
-export function initializeServices() {
+export function initializeServices(): void {
   Vue.prototype.$services = (service: string) => {
     return services[service];
   };

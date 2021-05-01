@@ -1,57 +1,100 @@
 <template>
-  <form @submit.prevent="submit">
+  <v-form
+    ref="form"
+    v-model="isFormValid"
+    lazy-validation
+    @submit.prevent="submit"
+  >
     <v-text-field
-      v-model="name"
-      :error-messages="errors"
+      v-model="user.firstName"
       label="Name"
       required
+      :rules="rules.firstName"
     />
     <v-text-field
-      v-model="lastName"
-      :error-messages="errors"
-      label="Last Name"
+      v-model="user.lastName"
+      label="Lastname"
+      :rules="rules.lastName"
       required
     />
     <v-text-field
-      v-model="name"
+      v-model="user.email"
       type="email"
-      :error-messages="errors"
       label="Email"
+      :rules="rules.email"
       required
     />
     <v-text-field
-      :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show4 ? 'text' : 'password'"
-      name="input-10-2"
+      type="password"
       label="Password"
-      hint="At least 8 characters"
-      value="Pa"
+      :rules="rules.password"
+      v-model="user.password"
     />
     <v-text-field
-      :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show4 ? 'text' : 'password'"
-      name="input-10-2"
-      label="Password"
-      hint="At least 8 characters"
-      value="Pa"
+      type="password"
+      label="Confirm password"
+      :rules="rules.confirmPassword"
+      v-model="user.confirmPassword"
     />
-  </form>
+    <v-btn @click="register()" class="u-width-100 mt-5">Register</v-btn>
+  </v-form>
 </template>
 
 <script>
 import Component from "vue-class-component";
 import Vue from "vue";
+
 @Component
 export default class RegisterForm extends Vue {
-  name = null;
-  lastName = null;
-  email = null;
-  password = null;
+  isFormValid = false;
+  user = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+  rules = {
+    firstName: [
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length >= 3) || "Name must be more than 3 characters",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+    lastName: [
+      (v) => !!v || "Lastname is required",
+      (v) => (v && v.length >= 3) || "Name must be more than 3 characters",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+    email: [
+      (v) => !!v || "Email is required",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+    password: [
+      (v) => !!v || "Password is required",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+    confirmPassword: [
+      (v) => !!v || "You need to confirm your password",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+  };
 
   register() {
-    this.$services("user").create({
-      ...this.data,
-    });
+    // if (this.$refs.form.validate()) {
+    this.$services("user")
+      .create({
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email,
+        password: this.user.password,
+      })
+      .then(() => {
+        this.$emit("register");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // }
   }
 }
 </script>
