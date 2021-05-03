@@ -2,23 +2,23 @@
 
 ### Front
 
-- Vue 2 - Main framework
-- Vuex -  State library
+- Vue 2 - **Front End framework**
+- Vuex -  **State library**
 - Vuex ORM 
 - TypeScript
-- Vue Class Decorators - Vue typescript syntax sugar
-- Axios - http client
-- Vuetify - component library
+- Vue Class Decorators -**Vue typescript sugar**
+- Axios - **HTTP client**
+- Vuetify - **UI library**
 
 
 ### Back
 
-- Express - server
-- PostgreSQL - database
-- Prisma - ORM (sort of)
+- Express - **HTTP Server**
+- PostgreSQL - **Database**
+- Prisma - **ORM (sort of)**
 - TypeScript
-- JWT - Auth
-- JOI - Validation
+- JWT - **Token generation library**
+- JOI - **Validation**
 
 ### Banco de dados
 
