@@ -5,6 +5,7 @@
 - Vue 2
 - Vuex
 - Vuex ORM
+- Vue Class Decorators
 - TypeScript
 - Axios
 - Vuetify
