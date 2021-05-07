@@ -1,13 +1,19 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+var bcrypt = require("bcryptjs");
 
 const prisma = new PrismaClient();
 export default {
   create: async (req: Request, res: Response) => {
-    const data = req.body.data;
+    const user = req.body;
     return await prisma.user
       .create({
-        data,
+        data:{
+          firstName: user.firstName,
+          lastName: user.lastName,
+          password: bcrypt.hash(user.password, 8),
+          email: user.email
+        }
       })
       .then(() => {
         return res
@@ -17,6 +23,5 @@ export default {
       .catch((err) => {
         return res.status(409).json({ message: err });
       });
-  },
-  login: async (req: Request, res: Response) => {},
-};
+  }
+}

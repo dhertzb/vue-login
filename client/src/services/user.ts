@@ -1,10 +1,8 @@
 import axios from "axios";
-import { IUser } from "../types/user";
+import { IUserRegister } from "../types/services/user";
 
 export default {
-  create(user: IUser): Promise<IUser> {
-    return axios.post(`http://localhost:3333/api/users`, {
-      data: user,
-    });
+  create(user: IUserRegister): Promise<IUserRegister> {
+    return axios.post(`http://localhost:3333/api/users`, user);
   },
 };

@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <v-app>
     <router-view />
-  </main>
+  </v-app>
 </template>
 <style scoped>
 main {

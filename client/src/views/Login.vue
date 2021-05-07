@@ -3,8 +3,8 @@
     <v-card class="form-wrapper">
       <div>
         <v-tabs grow v-model="form">
-          <v-tab> Log In </v-tab>
-          <v-tab> Register </v-tab>
+          <v-tab>Log In </v-tab>
+          <v-tab>Register </v-tab>
         </v-tabs>
       </div>
       <div class="forms">

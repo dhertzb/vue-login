@@ -34,8 +34,11 @@
   },
   "dependencies": {
     "@prisma/client": "^2.21.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "date-fns": "^2.21.1"
+    "date-fns": "^2.21.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "mikro-orm": {
     "useTsNode": true,

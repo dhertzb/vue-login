@@ -1,24 +1,53 @@
 <template>
   <form @submit.prevent="submit">
     <v-text-field
-      v-model="name"
+      v-model="user.email"
       type="email"
-      :error-messages="errors"
+      :rules="rules.email"
       label="Email"
       required
     ></v-text-field>
     <v-text-field
       type="password"
-      name="input-10-2"
       label="Password"
+      :rules="rules.password"
       hint="At least 8 characters"
-      value=""
+      v-model="user.password"
     ></v-text-field>
-    <v-btn class="login-btn u-width-100">Log In</v-btn>
+    <v-btn class="login-btn u-width-100" @click="login()">Log In</v-btn>
   </form>
 </template>
 
-<script></script>
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";
+@Component
+export default class AuthForm extends Vue {
+  user = {
+    email: "",
+    password: "",
+  };
+  rules = {
+    email: [(v: string): string | boolean => !!v || "Email is required"],
+    password: [
+      (v: string): string | boolean => !!v || "Password is required",
+      (v: string): string | boolean =>
+        (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+  };
+
+  login(): void {
+    this.$services("auth")
+      .login(this.user)
+      .then((res) => {
+        const token = res.token;
+        this.$store.dispatch("login", token).then((res) => {
+          this.$router.push({ name: "Home" });
+        });
+      });
+  }
+}
+</script>
 <style>
 .login-btn {
   margin: 15px 0;
