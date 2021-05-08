@@ -19,7 +19,7 @@ export default {
             user.password,
             matchedUser.password
         )
-        .then((res)=>{
+        .then(()=>{
             return res.status(200).json({ token: jwt.sign({ id: matchedUser.id }, 'test', {
                     expiresIn: 86400 
                 })
