@@ -40,9 +40,9 @@ export default class AuthForm extends Vue {
     this.$services("auth")
       .login(this.user)
       .then((res) => {
-        const token = res.token;
-        this.$store.dispatch("login", token).then((res) => {
-          this.$router.push({ name: "Home" });
+        const token = res.data.token;
+        this.$store.dispatch("login", token).then(() => {
+          this.$router.push({ name: "Dashboard" });
         });
       });
   }

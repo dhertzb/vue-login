@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
+import Dashboard from "../views/Dashboard.vue";
 import Login from "../views/Login.vue";
 import store from "../store/index";
 
@@ -17,8 +17,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Dashboard",
+    component: Dashboard,
     meta: {
       requiresAuth: true,
     },
@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isUserLogged) {
     router.push({ name: "Login" });
   } else if (!to.meta.requiresAuth && isUserLogged) {
-    router.push({ name: "Login" });
+    router.push({ name: "Dashboard" });
   } else {
     next();
   }
